@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <thread>
 #include <chrono>
@@ -7,10 +7,10 @@
 #include <fstream>
 
 #include "Level.h"
-#include <nlohmann/json.hpp>
+//#include <nlohmann/json.hpp>
 #pragma comment(lib, "Winmm.lib")
 
-using json = nlohmann::json;
+//using json = nlohmann::json;
 
 using std::cout;
 using std::flush;
@@ -21,15 +21,15 @@ using std::chrono::milliseconds;
 void slowPrint(const string&, unsigned int);
 
 int main() {
-	/*
+	
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	string message1 = "Åùå îäíà ñðåäà. Íà ðàáîòå çàâàë. Íàêîíåö ïðèøåë äîìîé.";
-	string message2 = "(Íîâîå ñîîáùåíèå)";
-	string message3 = "\"Êàêîå æå êëàññíîå àíèìå ÿ ñåãîäíÿ ïîñìîòðåë, òåïåðü öåëóþ íåäåëþ áóäó îò íåãî îòõîäèòü\"";
-	string message4 = "Ýòî ïèñàë Ìàêàð, Ìàêàð Ïðîäîëüíûé. "
-		"Êîãäà åãî îòåö ðàáîòàë íà ìàêàðîííîé ôàáðèêå, äèðåêòîð ïîîáåùàë áîëüøóþ ñóììó òîìó, \nêòî íàçîâåò ñûíà â ÷åñòü ôèðìû - "
-		"ýòî áûëè ñòàðûå ñîâåòñêèå ìàêàðîíû - òàê è ïîëó÷èëñÿ Ìàêàð. ";
+	string message1 = "Ð•Ñ‰Ðµ Ð¾Ð´Ð½Ð° ÑÑ€ÐµÐ´Ð°. ÐÐ° Ñ€Ð°Ð±Ð¾Ñ‚Ðµ Ð·Ð°Ð²Ð°Ð». ÐÐ°ÐºÐ¾Ð½ÐµÑ† Ð¿Ñ€Ð¸ÑˆÐµÐ» Ð´Ð¾Ð¼Ð¾Ð¹.";
+	string message2 = "(ÐÐ¾Ð²Ð¾Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ)";
+	string message3 = "\"ÐšÐ°ÐºÐ¾Ðµ Ð¶Ðµ ÐºÐ»Ð°ÑÑÐ½Ð¾Ðµ Ð°Ð½Ð¸Ð¼Ðµ Ñ ÑÐµÐ³Ð¾Ð´Ð½Ñ Ð¿Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ÐµÐ», Ñ‚ÐµÐ¿ÐµÑ€ÑŒ Ñ†ÐµÐ»ÑƒÑŽ Ð½ÐµÐ´ÐµÐ»ÑŽ Ð±ÑƒÐ´Ñƒ Ð¾Ñ‚ Ð½ÐµÐ³Ð¾ Ð¾Ñ‚Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ\"";
+	string message4 = "Ð­Ñ‚Ð¾ Ð¿Ð¸ÑÐ°Ð» ÐœÐ°ÐºÐ°Ñ€, ÐœÐ°ÐºÐ°Ñ€ ÐŸÑ€Ð¾Ð´Ð¾Ð»ÑŒÐ½Ñ‹Ð¹. "
+		"ÐšÐ¾Ð³Ð´Ð° ÐµÐ³Ð¾ Ð¾Ñ‚ÐµÑ† Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð» Ð½Ð° Ð¼Ð°ÐºÐ°Ñ€Ð¾Ð½Ð½Ð¾Ð¹ Ñ„Ð°Ð±Ñ€Ð¸ÐºÐµ, Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€ Ð¿Ð¾Ð¾Ð±ÐµÑ‰Ð°Ð» Ð±Ð¾Ð»ÑŒÑˆÑƒÑŽ ÑÑƒÐ¼Ð¼Ñƒ Ñ‚Ð¾Ð¼Ñƒ, \nÐºÑ‚Ð¾ Ð½Ð°Ð·Ð¾Ð²ÐµÑ‚ ÑÑ‹Ð½Ð° Ð² Ñ‡ÐµÑÑ‚ÑŒ Ñ„Ð¸Ñ€Ð¼Ñ‹ - "
+		"ÑÑ‚Ð¾ Ð±Ñ‹Ð»Ð¸ ÑÑ‚Ð°Ñ€Ñ‹Ðµ ÑÐ¾Ð²ÐµÑ‚ÑÐºÐ¸Ðµ Ð¼Ð°ÐºÐ°Ñ€Ð¾Ð½Ñ‹ - Ñ‚Ð°Ðº Ð¸ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»ÑÑ ÐœÐ°ÐºÐ°Ñ€. ";
 	slowPrint(message1, 70);
 	mciSendString("play icq.mp3", NULL, 0, NULL);
 	slowPrint(message2, 30);
@@ -37,16 +37,15 @@ int main() {
 	slowPrint(message4, 70);
 
 	std::cin.get();
-	*/
+	
 
 	//Level level;
-
+	/*
 	std::ifstream in("test.json");
 	json j;
 	in >> j;
-
 	cout << j["id"];
-	cout << j["info"].get<std::string>();
+	cout << j["info"].get<std::string>();*/
 
 	std::cin.get();
 }
